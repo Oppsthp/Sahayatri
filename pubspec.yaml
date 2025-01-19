@@ -11,15 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  #flutter_map: "^7.0.2"
-  #latlong2: "^0.9.1"
-  #geolocator: "^13.0.2"
   permission_handler: "^11.3.1"
   cupertino_icons: "^1.0.8"
-  flutter_typeahead: "^4.0.0"
- # csv: "^5.0.0"
+  flutter_typeahead: ^5.2.0
   http: "^1.2.2"
-  #excel: "^4.0.6"
 
 dev_dependencies:
   flutter_test:
@@ -31,20 +26,19 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/fonts/
     - assets/map.png
     - assets/bus.png
     - assets/Routes.csv
     - assets/Bus.csv
 
+  fonts:
+    - family: Preahvihear
+      fonts:
+        - asset: assets/fonts/Preahvihear-Regular.ttf
+          weight: 700
+
 flutter_icons:
   android: true
   ios: false
   image_path: "assets/icon/final.png"
-
-
-fonts:
-  - family: Preahvihear
-    fonts:
-      - asset: fonts/Preahvihear.ttf
-      - asset: fonts/Preahvihear-Bold.ttf
-        weight: 700

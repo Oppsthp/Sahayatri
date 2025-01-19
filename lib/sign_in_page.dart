@@ -72,6 +72,7 @@ class _SignInPageState extends State<SignInPage> {
                 const Text(
                   'Create\nAccount',
                   style: TextStyle(
+                    fontFamily: 'Preahvihear',
                     fontSize: 37,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

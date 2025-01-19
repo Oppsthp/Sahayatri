@@ -26,6 +26,7 @@ class SahayatriApp extends StatelessWidget {
       },
       theme: ThemeData(
         primarySwatch: Colors.green,
+        fontFamily: 'Preahvihear',
       ),
     );
   }
