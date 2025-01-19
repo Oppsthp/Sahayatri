@@ -8,11 +8,13 @@
 
 import 'package:flutter_keyboard_visibility_web/flutter_keyboard_visibility_web.dart';
 import 'package:permission_handler_html/permission_handler_html.dart';
+import 'package:pointer_interceptor_web/pointer_interceptor_web.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 void registerPlugins([final Registrar? pluginRegistrar]) {
   final Registrar registrar = pluginRegistrar ?? webPluginRegistrar;
   FlutterKeyboardVisibilityPlugin.registerWith(registrar);
   WebPermissionHandler.registerWith(registrar);
+  PointerInterceptorWeb.registerWith(registrar);
   registrar.registerMessageHandler();
 }

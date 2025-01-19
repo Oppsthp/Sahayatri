@@ -21,11 +21,10 @@ class SahayatriApp extends StatelessWidget {
         '/': (context) => const SahayatriHome(),
         '/signin': (context) => const SignInPage(),
         '/signup': (context) => const SignUpPage(),
-
-
       },
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.deepPurple,  // Change primary color to purple
+        scaffoldBackgroundColor: Colors.white,  // Set background to white
         fontFamily: 'Preahvihear',
       ),
     );
@@ -62,8 +61,8 @@ class _SahayatriHomeState extends State<SahayatriHome> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF32CD32), // Green gradient start
-              Color(0xFFE9FFE9), // Light green gradient end
+              Color(0xFF6A0DAD), // Purple gradient start
+              Color(0xFFF1E6FF), // Light purple gradient end
             ],
           ),
         ),
@@ -76,7 +75,7 @@ class _SahayatriHomeState extends State<SahayatriHome> {
               style: TextStyle(
                 fontSize: 36,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.white, // Text color changed to white
               ),
             ),
             const Text(
@@ -84,7 +83,7 @@ class _SahayatriHomeState extends State<SahayatriHome> {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.normal,
-                color: Colors.black54,
+                color: Colors.white70, // Lighter text color
               ),
             ),
             const SizedBox(height: 30),
@@ -98,7 +97,7 @@ class _SahayatriHomeState extends State<SahayatriHome> {
                   return Icon(
                     Icons.directions_bus,
                     size: 200,
-                    color: Colors.green.shade200,
+                    color: Colors.deepPurple.shade200, // Bus icon color changed to purple
                   );
                 },
               ),
@@ -109,7 +108,7 @@ class _SahayatriHomeState extends State<SahayatriHome> {
                 Navigator.pushNamed(context, '/signin');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
+                backgroundColor: Colors.deepPurple, // Button color changed to purple
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -120,10 +119,10 @@ class _SahayatriHomeState extends State<SahayatriHome> {
                 children: const [
                   Text(
                     'Sign In',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   SizedBox(width: 10),
-                  Icon(Icons.arrow_forward),
+                  Icon(Icons.arrow_forward, color: Colors.white),
                 ],
               ),
             ),
@@ -133,7 +132,7 @@ class _SahayatriHomeState extends State<SahayatriHome> {
                 Navigator.pushNamed(context, '/signup');
               },
               style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Colors.green),
+                side: const BorderSide(color: Colors.deepPurple),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -144,12 +143,12 @@ class _SahayatriHomeState extends State<SahayatriHome> {
                 children: const [
                   Text(
                     'Sign Up',
-                    style: TextStyle(fontSize: 18, color: Colors.green),
+                    style: TextStyle(fontSize: 18, color: Colors.deepPurple),
                   ),
                   SizedBox(width: 10),
                   Icon(
                     Icons.arrow_forward,
-                    color: Colors.green,
+                    color: Colors.deepPurple,
                   ),
                 ],
               ),
@@ -160,7 +159,7 @@ class _SahayatriHomeState extends State<SahayatriHome> {
                 Navigator.pushNamed(context, '/driver');
               },
               style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Colors.green),
+                side: const BorderSide(color: Colors.deepPurple),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -171,12 +170,12 @@ class _SahayatriHomeState extends State<SahayatriHome> {
                 children: const [
                   Text(
                     'Sign In as Driver',
-                    style: TextStyle(fontSize: 18, color: Colors.green),
+                    style: TextStyle(fontSize: 18, color: Colors.deepPurple),
                   ),
                   SizedBox(width: 10),
                   Icon(
                     Icons.drive_eta,
-                    color: Colors.green,
+                    color: Colors.deepPurple,
                   ),
                 ],
               ),
