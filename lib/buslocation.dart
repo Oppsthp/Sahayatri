@@ -1,3 +1,4 @@
+import 'dart:async'; // Import dart:async for Timer
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -19,6 +20,8 @@ class _BusLocationPageState extends State<BusLocationPage> {
   final List<String> yatayatNames = ['Sajha Yatayat', 'Mayur Yatayat', 'Nepal Yatayat'];
 
   String? _locationMessage = "Location not yet shared.";
+  Timer? _locationTimer; // To hold the Timer reference
+  bool _isSharingLocation = false; // To check if location sharing is active
 
   // Request permission for location
   Future<bool> _requestPermission() async {
@@ -49,6 +52,30 @@ class _BusLocationPageState extends State<BusLocationPage> {
         _locationMessage = 'Location permission denied.';
       });
     }
+  }
+
+  // Start location updates every 2 seconds
+  void _startLocationUpdates() {
+    _locationTimer = Timer.periodic(const Duration(seconds: 2), (timer) {
+      _getLocation();
+    });
+  }
+
+  // Stop location updates
+  void _stopLocationUpdates() {
+    if (_locationTimer != null) {
+      _locationTimer!.cancel();
+      setState(() {
+        _locationMessage = 'Location updates stopped.';
+        _isSharingLocation = false; // Stop sharing
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _locationTimer?.cancel(); // Cancel the timer when the widget is disposed
+    super.dispose();
   }
 
   @override
@@ -179,9 +206,18 @@ class _BusLocationPageState extends State<BusLocationPage> {
                 ),
                 const SizedBox(height: 30),
 
-                // Share Location button
+                // Toggle button to start/stop location sharing
                 ElevatedButton(
-                  onPressed: _getLocation,
+                  onPressed: () {
+                    if (_isSharingLocation) {
+                      _stopLocationUpdates(); // Stop sharing location
+                    } else {
+                      _startLocationUpdates(); // Start location updates
+                      setState(() {
+                        _isSharingLocation = true; // Location sharing started
+                      });
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurple,
                     padding: const EdgeInsets.all(15),
@@ -191,13 +227,16 @@ class _BusLocationPageState extends State<BusLocationPage> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
-                        'Share Location',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        _isSharingLocation ? 'Stop Sharing' : 'Share Location',
+                        style: const TextStyle(fontSize: 18, color: Colors.white),
                       ),
-                      SizedBox(width: 10),
-                      Icon(Icons.location_on, color: Colors.white),
+                      const SizedBox(width: 10),
+                      Icon(
+                        _isSharingLocation ? Icons.warning : Icons.location_on,
+                        color: Colors.white,
+                      ),
                     ],
                   ),
                 ),
