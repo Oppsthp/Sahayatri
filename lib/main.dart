@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dashboard.dart'; // Import the Dashboard page
-import 'sign_in_page.dart';  // Import the SignInPage
-import 'sign_up_page.dart';  // Import the SignUpPage
-import 'driver.dart';        // Import the DriverSignInPage
+import 'login.dart';  // Import the login
+import 'signup.dart';  // Import the SignUpPage
+import 'buslocation.dart';
 
 void main() {
   runApp(const SahayatriApp());
@@ -19,8 +19,9 @@ class SahayatriApp extends StatelessWidget {
       initialRoute: '/', // Define the initial route
       routes: {
         '/': (context) => const SahayatriHome(),
-        '/signin': (context) => const SignInPage(),
+        '/login': (context) => const login(),
         '/signup': (context) => const SignUpPage(),
+        '/buslocation':(context)=> const BusLocationPage(),
       },
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,  // Change primary color to purple
@@ -105,7 +106,7 @@ class _SahayatriHomeState extends State<SahayatriHome> {
             const SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/signin');
+                Navigator.pushNamed(context, '/login');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.deepPurple, // Button color changed to purple
@@ -118,7 +119,7 @@ class _SahayatriHomeState extends State<SahayatriHome> {
                 mainAxisSize: MainAxisSize.min,
                 children: const [
                   Text(
-                    'Sign In',
+                    'Log In',
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   SizedBox(width: 10),
@@ -156,7 +157,7 @@ class _SahayatriHomeState extends State<SahayatriHome> {
             const SizedBox(height: 20),
             OutlinedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/driver');
+                Navigator.pushNamed(context, '/buslocation');
               },
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: Colors.deepPurple),
