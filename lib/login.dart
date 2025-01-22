@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'signup.dart'; // Import the Sign-Up page
 import 'bubble_generator.dart';
+import 'dashboard.dart';
+import 'api_service.dart';
 
 
 class login extends StatefulWidget {
@@ -17,20 +19,34 @@ class _loginState extends State<login> {
 
   // Function to handle sign-in
   void _LogIn() async {
-    setState(() => _isLoading = true);
+    setState(() => _isLoading = true); // Show loading indicator
     try {
-      // Mock success response for demo
+      // Call the login function from the API service
+      final response = await ApiService.login(
+        _emailController.text,
+        _passwordController.text,
+      );
+
+      // Show a success message using a snackbar
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Welcome!')),
+        SnackBar(content: Text('Welcome, ${response['username']}!')),
+      );
+
+      // Navigate to the Dashboard page on successful login
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const DashboardPage()),
       );
     } catch (error) {
+      // Show an error message using a snackbar
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Login Failed: $error')),
       );
     } finally {
-      setState(() => _isLoading = false);
+      setState(() => _isLoading = false); // Hide loading indicator
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
